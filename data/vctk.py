@@ -37,12 +37,10 @@ def job(wav_filename):
 			raise
 
 
-def preprocess(data_path, prepro_wav_dir, prepro_path, mel_path, h_mel_path, p_mel_path, sampling_rate, n_workers=4, filter_length=1024, hop_length=256, trim_silence=True, top_db=60):
+def preprocess(data_path, prepro_wav_dir, prepro_path, mel_path, sampling_rate, n_workers=4, filter_length=1024, hop_length=256, trim_silence=True, top_db=60):
 	p = Pool(n_workers)
 
 	mel_scaler = StandardScaler(copy=False)
-	harmonic_mel_scaler = StandardScaler(copy=False)
-	percussive_mel_scaler = StandardScaler(copy=False)
  
 	prepro_wav_dir = create_dir(prepro_wav_dir)
 	# wav_paths=[[filename, prepro_wav_dir, sampling_rate] for filename in list(glob.glob(get_path(data_path, "wav48", "**", "*.wav")))]
@@ -61,14 +59,12 @@ def preprocess(data_path, prepro_wav_dir, prepro_path, mel_path, h_mel_path, p_m
 		for wav_filename in tqdm(glob.glob(get_path(formatted_path, "*.flac"))):
 			mel_filename = wav_filename.split("/")[-1].replace("flac", "npy")
 			mel_savepath = get_path(mel_path, mel_filename)
-			harmonic_mel_savepath = get_path(h_mel_path, mel_filename)
-			percussive_mel_savepath = get_path(p_mel_path, mel_filename)
+
    
-			mel_spectrogram, _, harmonic_mel, harmonic_energy, percussive_mel, percussive_energy = get_mel(wav_filename, trim_silence=trim_silence, frame_length=filter_length, hop_length=hop_length, top_db=top_db)
+			mel_spectrogram, _ = get_mel(wav_filename, trim_silence=trim_silence, frame_length=filter_length, hop_length=hop_length, top_db=top_db)
 
 			mel_scaler.partial_fit(mel_spectrogram)
-			harmonic_mel_scaler.partial_fit(harmonic_mel)
-			percussive_mel_scaler.partial_fit(percussive_mel)
+
    
 			# plt.figure()  # Define the figure size (optional)
 			# plt.imshow(mel_spectrogram.T, cmap='viridis')  # Plot the 2D array
@@ -78,15 +74,12 @@ def preprocess(data_path, prepro_wav_dir, prepro_path, mel_path, h_mel_path, p_m
 			# plt.gca().invert_yaxis()
 			# plt.savefig('mel[1].png')
 
-			subplot_MHP(mel_spectrogram, harmonic_mel, percussive_mel)
    
 			np.save(mel_savepath, mel_spectrogram)
-			np.save(harmonic_mel_savepath, harmonic_mel)
-			np.save(percussive_mel_savepath, percussive_mel)
+
    
 	np.save(get_path(prepro_path, "mel_stats.npy"), np.array([mel_scaler.mean_, mel_scaler.scale_]))
-	np.save(get_path(prepro_path, "harmonic_mel_stats.npy"), np.array([harmonic_mel_scaler.mean_, harmonic_mel_scaler.scale_]))
-	np.save(get_path(prepro_path, "percussive_mel_stats.npy"), np.array([percussive_mel_scaler.mean_, percussive_mel_scaler.scale_]))
+
 	print("Done!")
 
 

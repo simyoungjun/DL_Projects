@@ -12,7 +12,7 @@ class Arguments:
 	# converted_sample_dir = "results/model_HP_1"	
 	converted_sample_dir = "/root/sim/VoiceConversion/DL_Projects/results/"+model_name	
 	# prepro_dir = "preprocessed"
-	prepro_dir = "/root/sim/VoiceConversion/DL_Projects/preprocessed"
+	prepro_dir = "/root/sim/VoiceConversion/VQVC/preprocessed"
 	model_log_dir = "logs"
 	# model_checkpoint_dir = "ckpts"
 	model_checkpoint_dir = "/root/sim/VoiceConversion/DL_Projects/ckpts"
@@ -107,7 +107,7 @@ class Arguments:
 
 	log_tensorboard = True
 	log_wandb = True
-	max_training_step = 200000
+	max_training_step = 80000
 
 	# vocoder setting
 	vocoder = "vocgan"

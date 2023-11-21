@@ -65,12 +65,20 @@ def train(train_data_loader, eval_data_loader, model, reconstruction_loss, vocod
 
 			nn.utils.clip_grad_norm_(model.parameters(), args.grad_clip_thresh)
 			optimizer.step()
-
 			if global_step % args.save_checkpoint_step == 0:
 				save_checkpoint(checkpoint_path=args.model_checkpoint_path, model=model, optimizer=optimizer, scheduler=scheduler, global_step=global_step)
 
 			if global_step % args.eval_step == 0:
+				model.codebook.codebook_usage = torch.zeros(args.n_embeddings).to(torch.device("cuda:0"))
 				evaluate(model=model, vocoder=vocoder, eval_data_loader=eval_data_loader, criterion=reconstruction_loss, mel_stat=mel_stat, global_step=global_step, writer=writer, DEVICE=DEVICE)
+				codebook_usage = model.codebook.codebook_usage
+				plt.bar(range(args.n_embeddings), codebook_usage.cpu().numpy())
+    			# plt.hist(codebook_usage.cpu().numpy(), bins=args.n_embeddings, color='blue')
+				plt.xlabel('Code')
+				plt.ylabel('Frequency')
+				plt.title('Histogram of 1D Tensor')
+				plt.savefig('codebook_usage.png')
+				plt.close()
 				model.train()
 
 			# if args.log_tensorboard:
@@ -87,7 +95,7 @@ def train(train_data_loader, eval_data_loader, model, reconstruction_loss, vocod
 					"train_total_loss": loss,
     				# "Mels": wandb.Image(mel_plot),
     				# "Mels_hat": wandb.Image(mels_hat),
-     
+					
 				})
 			global_step += 1
 

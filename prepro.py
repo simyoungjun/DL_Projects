@@ -26,7 +26,7 @@ def prepro_wavs():
 	if "korean_emotional_speech" in args.dataset_name:
 		korean_emotional_speech_dataset.preprocess(dataset_path, wav_dir, prepro_path, mel_path, sampling_rate, n_workers=args.n_workers, filter_length=args.filter_length, hop_length=args.hop_length, trim_silence=args.trim_silence, top_db=args.top_db)
 	elif "VCTK" in args.dataset_name:
-		vctk.preprocess(dataset_path, wav_dir, prepro_path, mel_path, harmonic_path, percussive_path, sampling_rate, n_workers=args.n_workers, filter_length=args.filter_length, hop_length=args.hop_length, trim_silence=args.trim_silence, top_db=args.top_db)
+		vctk.preprocess(dataset_path, wav_dir, prepro_path, mel_path, sampling_rate, n_workers=args.n_workers, filter_length=args.filter_length, hop_length=args.hop_length, trim_silence=args.trim_silence, top_db=args.top_db)
 		# vctk_hpss.preprocess(dataset_path, wav_dir, prepro_path, harmonic_path, percussive_path, sampling_rate, n_workers=args.n_workers, filter_length=args.filter_length, hop_length=args.hop_length, trim_silence=args.trim_silence, top_db=args.top_db)
 	else:
 		print("[ERROR] No Dataset named {}".format(args.dataset_name))

@@ -47,7 +47,7 @@ class VQVC(nn.Module):
 		z_enc = self.encoder(mels)
 
 		# quantization
-		z_quan, commitment_loss, perplexity = self.codebook(z_enc)
+		z_quan, commitment_loss, perplexity = self.codebook(z_enc, False)
 
 		# speaker emb
 		speaker_emb_ = z_enc - z_quan
@@ -64,7 +64,7 @@ class VQVC(nn.Module):
 		z_enc = self.encoder(mels)
 
 		# contents emb
-		z_quan, commitment_loss, perplexity = self.codebook(z_enc)
+		z_quan, commitment_loss, perplexity = self.codebook(z_enc, True)
 
 		# speaker emb
 		speaker_emb_ = z_enc - z_quan

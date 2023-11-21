@@ -64,6 +64,8 @@ class VQEmbeddingEMA(nn.Module):
 		self.register_buffer("ema_count", torch.zeros(n_embeddings))
 		self.register_buffer("ema_weight", self.embedding.clone())
 
+		# self.codebook_usage = torch.zeros(n_embeddings).to(torch.device("cuda:0"))
+  
 	def instance_norm(self, x, dim, epsilon=1e-5):
 		mu = torch.mean(x, dim=dim, keepdim=True)
 		std = torch.std(x, dim=dim, keepdim=True)
@@ -72,7 +74,7 @@ class VQEmbeddingEMA(nn.Module):
 		return z
 
 
-	def forward(self, x):
+	def forward(self, x, eval=False):
 
 		x = self.instance_norm(x, dim=1)
 
@@ -99,6 +101,9 @@ class VQEmbeddingEMA(nn.Module):
 		quantized_ = (quantized_ + quantized)/2
 
 		avg_probs = torch.mean(encodings, dim=0)
+  
+		if eval == True:
+			self.codebook_usage = self.codebook_usage + avg_probs
 		perplexity = torch.exp(-torch.sum(avg_probs * torch.log(avg_probs + 1e-10)))
 
 		return quantized_, commitment_loss, perplexity
