@@ -39,30 +39,30 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 1. **Codebook Utility**:
    - CVQ significantly improves codebook perplexity, enhancing utilization of the VQ codebook.
    
-   | **Perplexity Comparisons** |
-   |----------------------------|
-   | <p align="center"><img src="images/perplexity.png" alt="Perplexity Comparisons" width="75%"></p> |
+ | **Perplexity Comparisons** |
+ |----------------------------|
+ | <p align="center"><img src="images/perplexity.png" alt="Perplexity Comparisons" width="75%"></p> |
 
 2. **Training Performance**:
    - Reconstruction performance increases with the integration of CVQ-VAE.
 
-   | **Reconstruction Comparisons** |
-   |----------------------------|
-   | <p align="center"><img src="images/reconstruction.png" alt="Reconstructioin Comparisons" width="75%"></p> |
+ | **Reconstruction Comparisons** |
+ |----------------------------|
+ | <p align="center"><img src="images/reconstruction.png" alt="Reconstructioin Comparisons" width="75%"></p> |
 
 3. **Test Performance**:
    - Conversion performance shows no improvement and sometimes declines, indicating a trade-off between reconstruction accuracy and conversion effectiveness.
 
-   | **Similarity Scores** |
-   |------------------------|
-   | <p align="center"><img src="images/sim_comparison.png" alt="Similarity Scores" width="60%"></p> |
+ | **Similarity Scores** |
+ |------------------------|
+ | <p align="center"><img src="images/sim_comparison.png" alt="Similarity Scores" width="60%"></p> |
 
 4. **Result Summary**:
    - Enhanced perplexity leads to better reconstruction performance but does not necessarily improve voice conversion accuracy. This is consistent with findings in vision tasks, where higher perplexity benefits reconstruction but may disrupt speaker-content separation.
 
-   | **Performance Summary** |
-   |--------------------------|
-   | <p align="center"><img src="images/concolusion.png" alt="Performance Summary" width="85%"></p> |
+ | **Performance Summary** |
+ |--------------------------|
+ | <p align="center"><img src="images/concolusion.png" alt="Performance Summary" width="85%"></p> |
 
 ---
 
