@@ -55,14 +55,14 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 
  | **Similarity Scores** |
  |------------------------|
- | <p align="center"><img src="images/sim_comparison.png" alt="Similarity Scores" width="60%"></p> |
+ | <p align="center"><img src="images/sim_comparison.png" alt="Similarity Scores" width="45%"></p> |
 
 4. **Result Summary**:
    - Enhanced perplexity leads to better reconstruction performance but does not necessarily improve voice conversion accuracy. This is consistent with findings in vision tasks, where higher perplexity benefits reconstruction but may disrupt speaker-content separation.
 
  | **Performance Summary** |
  |--------------------------|
- | <p align="center"><img src="images/concolusion.png" alt="Performance Summary" width="75%"></p> |
+ | <p align="center"><img src="images/concolusion.png" alt="Performance Summary" width="85%"></p> |
 
 ---
 
