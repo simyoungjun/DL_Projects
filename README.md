@@ -13,10 +13,11 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 ### **Motivation**
 - **Voice Conversion Task**:
   - Transforms the source speaker’s voice into a target speaker’s voice while preserving the original content.
-  - VQVC utilizes vector quantization to discretize speech features and enables one-shot voice conversion.
+  - In vector quantization-based voice conversion (VQVC), vector quantization (VQ) is used to discretize speech features, effectively capturing the content of the source speech.
 - **Challenges**:
-  - **Codebook Collapse**: Low perplexity values can hinder codebook utilization.
-  - Previous solutions in vision tasks inspired this study to tackle similar issues in voice conversion.
+  - **Codebook Collapse**: When codebook perplexity is low, the codebook’s ability to represent content is compromised. This hinders the separation of content and speaker information, which is critical for successful voice conversion.
+  - To address this, enhancing perplexity improves codebook utility, reducing **content leakage** and enabling better representation of speech content.
+  - Higher codebook utility leads to reduced content leakage, ultimately improving the overall performance of voice conversion.
 
 ---
 
