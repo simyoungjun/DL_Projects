@@ -30,7 +30,7 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 
 | **CVQ-VAE Codebook Update** |
 |------------------------------|
-| <img src="image1.png" alt="CVQ-VAE Codebook Update" width="70%"> |
+| <img src="images/cvq.png" alt="CVQ-VAE Codebook Update" width="80%"> |
 
 ---
 
@@ -40,23 +40,28 @@ This project investigates the impact of codebook perplexity on one-shot voice co
    
    | **Perplexity Comparisons** |
    |----------------------------|
-   | <img src="image2.png" alt="Perplexity Comparisons" width="70%"> |
+   | <img src="images/perplexity" alt="Perplexity Comparisons" width="75%"> |
 
 2. **Training Performance**:
    - Reconstruction performance increases with the integration of CVQ-VAE.
+
+   | **Reconstruction Comparisons** |
+   |----------------------------|
+   | <img src="images/reconstructioin" alt="Reconstructioin Comparisons" width="75%"> |
+
 3. **Test Performance**:
    - Conversion performance shows no improvement and sometimes declines, indicating a trade-off between reconstruction accuracy and conversion effectiveness.
 
    | **Similarity Scores** |
    |------------------------|
-   | <img src="image3.png" alt="Similarity Scores" width="50%"> |
+   | <img src="images/sim_comparison" alt="Similarity Scores" width="60%"> |
 
 4. **Result Summary**:
    - Enhanced perplexity leads to better reconstruction performance but does not necessarily improve voice conversion accuracy. This is consistent with findings in vision tasks, where higher perplexity benefits reconstruction but may disrupt speaker-content separation.
 
    | **Performance Summary** |
    |--------------------------|
-   | <img src="image4.png" alt="Performance Summary" width="70%"> |
+   | <img src="images/concolusion" alt="Performance Summary" width="85%"> |
 
 ---
 
