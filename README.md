@@ -62,7 +62,7 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 
  | **Performance Summary** |
  |--------------------------|
- | <p align="center"><img src="images/concolusion.png" alt="Performance Summary" width="85%"></p> |
+ | <p align="center"><img src="images/concolusion.png" alt="Performance Summary" width="75%"></p> |
 
 ---
 
