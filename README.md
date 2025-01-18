@@ -1,93 +1,66 @@
-# VQVC-Pytorch
+# Influence of Codebook Perplexity in One-Shot Voice Conversion Based on Vector Quantization Method
 
-An unofficial implementation of [Vector Quantization Voice Conversion(VQVC, D. Y. Wu et. al., 2020)](https://ieeexplore.ieee.org/document/9053854)
+---
 
-![model](./assets/model_architecture.png)
+### **Overview**
+This project investigates the impact of codebook perplexity on one-shot voice conversion using Vector Quantization (VQ). By integrating the CVQ-VAE (Clustered Vector Quantization Variational Autoencoder) update mechanism into the VQVC (Vector Quantization Voice Conversion) model, we explore its effects on:
+- Codebook utility (perplexity),
+- Training performance (reconstruction accuracy),
+- Test performance (voice conversion accuracy).
 
-# How-to-run
-1. Install dependencies.
-    * python=3.7
-    * [pytorch](https://pytorch.org/)=1.7 
+---
 
-    ```
-    pip install -r requirements.txt
-    ```
+### **Motivation**
+- **Voice Conversion Task**:
+  - Transforms the source speaker’s voice into a target speaker’s voice while preserving the original content.
+  - VQVC utilizes vector quantization to discretize speech features and enables one-shot voice conversion.
+- **Challenges**:
+  - **Codebook Collapse**: Low perplexity values can hinder codebook utilization.
+  - Previous solutions in vision tasks inspired this study to tackle similar issues in voice conversion.
 
-2. Download dataset and pretrained VocGAN model.
-    * Please download [VCTK dataset](https://datashare.ed.ac.uk/handle/10283/3443) and edit ```dataset_path``` in ```config.py```.
-    * Download [VocGAN pretrained model](https://github.com/Jackson-Kang/VQVC-Pytorch#pretrained-models)
+---
 
-3. Preprocess 
-    * preprocess mel-spectrogram via following command:
-    ```
-    python prepro.py 1 1
-    ```
-    * first argument: mel-preprocessing
-    * second argument: metadata split (You may change the portion of samples used on train/eval via ```data_split_ratio``` in ```config.py```)
+### **Proposed Method**
+1. **CVQ-VAE Integration**:
+   - The VQ codebook update rule in VQVC is replaced with the CVQ-VAE update mechanism, which averages sampled vectors from the activated codebook to enhance perplexity.
+2. **Evaluation Metrics**:
+   - **Codebook Utility**: Measured via perplexity.
+   - **Training Performance**: Evaluated through reconstruction accuracy.
+   - **Test Performance**: Assessed by similarity between the source and converted voices.
 
-4. Train the model
-    ```
-    python train.py
-    ```
-    * In ```config.py```, you may edit ```train_visible_device``` to choose GPU for training.
-    * Same as paper, 60K steps are enough.
-    * Training the model spends only 30 minutes.
+| **CVQ-VAE Codebook Update** |
+|------------------------------|
+| <img src="image1.png" alt="CVQ-VAE Codebook Update" width="70%"> |
 
-5. Voice conversion
-    * After training, point the source and reference speech for voice conversion. (You may edit ```src_paths``` and ```ref_paths``` in ```conversion.py```.)
-    * As a result of conversion, you may check samples in directory ```results```.
-    ```
-    python conversion.py
-    ```
+---
 
-# Visualization of training
-Train loss visualization
+### **Key Results**
+1. **Codebook Utility**:
+   - CVQ significantly improves codebook perplexity, enhancing utilization of the VQ codebook.
+   
+   | **Perplexity Comparisons** |
+   |----------------------------|
+   | <img src="image2.png" alt="Perplexity Comparisons" width="70%"> |
 
-* reconstruction loss
+2. **Training Performance**:
+   - Reconstruction performance increases with the integration of CVQ-VAE.
+3. **Test Performance**:
+   - Conversion performance shows no improvement and sometimes declines, indicating a trade-off between reconstruction accuracy and conversion effectiveness.
 
-![recon_loss](./assets/train_reconstruction_loss.jpg)
+   | **Similarity Scores** |
+   |------------------------|
+   | <img src="image3.png" alt="Similarity Scores" width="50%"> |
 
-* commitment loss
+4. **Result Summary**:
+   - Enhanced perplexity leads to better reconstruction performance but does not necessarily improve voice conversion accuracy. This is consistent with findings in vision tasks, where higher perplexity benefits reconstruction but may disrupt speaker-content separation.
 
-![commitment_loss](./assets/train_commitment_loss.jpg)
+   | **Performance Summary** |
+   |--------------------------|
+   | <img src="image4.png" alt="Performance Summary" width="70%"> |
 
-* perplexity of codebook
+---
 
-![perplexity](./assets/train_perplexity.jpg)
-
-* total loss
-
-![total_loss](./assets/train_total_loss.jpg)
-
-Mel-spectrogram visualization
-
-* Ground-truth(top), reconstructed-mel(top-middle), Contents-mel(bottom-middle), Style-mel(bottom, i.e., encoder output subtracted by code)
-
-![melspectrogram](./assets/melspectrogram_visualization.jpg)
-
-# Inference results
-* You may hear [audio samples](https://jackson-kang.github.io/opensource_samples/vqvc/).
-
-* Visualization of converted mel-spectrogram
-    - source mel(top), reference mel(middle), converted mel(bottom)
-
-![converted_melspectrogram](./assets/converted_melspectrogram.jpg)
-
-
-# Pretrained models
-1.  [VQVC pretrained model](https://drive.google.com/file/d/1wiG8CyzNhq7dVZG3LZqCJ5bnoPTPS08a/view?usp=sharing)
-* download pretrained VQVC model and place it in ```ckpts/VCTK-Corpus/```
-2. [VocGAN pretrained model](https://drive.google.com/file/d/1nfD84ot7o3u2tFR7YkSp2vQWVnNJ-md_/view?usp=sharing) 
-* download pretrained VocGAN model and place it in ```vocoder/vocgan/pretrained_models```
-
-# Experimental Notes
-* Trimming silence and stride of convolution are very important to transfer the style from reference speech.
-* Unlike paper, I used [NVIDIA's preprocessing method](https://github.com/NVIDIA/tacotron2/blob/fc0cf6a89a47166350b65daa1beaa06979e4cddf/stft.py) to use pretrained [VocGAN](https://arxiv.org/pdf/2007.15256.pdf) model.
-* Training is very unstable. (After 70K steps, perplexity of codebook is substantially decreased to 1.)
-* **(Future work)** The model trained on [Korean Emotional Speech dataset](https://www.aihub.or.kr/keti_data_board/expression) is not completed yet. 
-
-# References (or acknowledgements)
-* [One-shot Voice Conversion by Vector Quantization](https://ieeexplore.ieee.org/document/9053854) (D. Y. Wu et. al., 2020)
-* [VocGAN implementation](https://github.com/rishikksh20/VocGAN) by rishikksh20
-* [NVIDIA's preprocessing method](https://github.com/NVIDIA/tacotron2/blob/fc0cf6a89a47166350b65daa1beaa06979e4cddf/stft.py)
-
+### **Conclusion**
+- Integrating CVQ-VAE improves codebook utilization and reconstruction performance.
+- Enhanced perplexity interrupts the regularization role of VQ, hindering speaker-content separation and affecting conversion performance.
+- The study highlights the trade-off between reconstruction quality and conversion accuracy, providing insights for future research.
