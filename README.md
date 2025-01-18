@@ -48,7 +48,7 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 
    | **Reconstruction Comparisons** |
    |----------------------------|
-   | <img src="images/reconstructioin.png" alt="Reconstructioin Comparisons" width="75%"></p> |
+   | <img src="images/reconstruction.png" alt="Reconstructioin Comparisons" width="75%"></p> |
 
 3. **Test Performance**:
    - Conversion performance shows no improvement and sometimes declines, indicating a trade-off between reconstruction accuracy and conversion effectiveness.
@@ -70,3 +70,9 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 - Integrating CVQ-VAE improves codebook utilization and reconstruction performance.
 - Enhanced perplexity interrupts the regularization role of VQ, hindering speaker-content separation and affecting conversion performance.
 - The study highlights the trade-off between reconstruction quality and conversion accuracy, providing insights for future research.
+  
+---
+### **References**
+1. Da-Yi Wu and Hung-Yi Lee, "One-shot voice conversion by vector quantization," IEEE ICASSP, 2020.
+2. C. Zheng and A. Vedaldi, "Online clustered codebook," IEEE ICCV, 2023.
+3. H. Wu and M. Flierl, "Vector Quantization-Based Regularization for Autoencoders," AAAI, 2020.
