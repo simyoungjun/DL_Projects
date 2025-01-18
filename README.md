@@ -6,7 +6,7 @@
 This project investigates the impact of codebook perplexity on one-shot voice conversion using Vector Quantization (VQ). By integrating the CVQ-VAE (Clustered Vector Quantization Variational Autoencoder) update mechanism into the VQVC (Vector Quantization Voice Conversion) model, we explore its effects on:
 - Codebook utility (perplexity),
 - Training performance (reconstruction accuracy),
-- Test performance (voice conversion accuracy).
+- Test performance (voice conversion similarity).
 
 ---
 
@@ -30,7 +30,7 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 
 | **CVQ-VAE Codebook Update** |
 |------------------------------|
-| <img src="images/cvq.png" alt="CVQ-VAE Codebook Update" width="80%"> |
+| <p align="center"><img src="images/cvq.png" alt="CVQ-VAE Codebook Update" width="80%"></p> |
 
 ---
 
@@ -40,28 +40,28 @@ This project investigates the impact of codebook perplexity on one-shot voice co
    
    | **Perplexity Comparisons** |
    |----------------------------|
-   | <img src="images/perplexity.png" alt="Perplexity Comparisons" width="75%"> |
+   | <p align="center"><img src="images/perplexity.png" alt="Perplexity Comparisons" width="75%"></p> |
 
 2. **Training Performance**:
    - Reconstruction performance increases with the integration of CVQ-VAE.
 
    | **Reconstruction Comparisons** |
    |----------------------------|
-   | <img src="images/reconstructioin.png" alt="Reconstructioin Comparisons" width="75%"> |
+   | <img src="images/reconstructioin.png" alt="Reconstructioin Comparisons" width="75%"></p> |
 
 3. **Test Performance**:
    - Conversion performance shows no improvement and sometimes declines, indicating a trade-off between reconstruction accuracy and conversion effectiveness.
 
    | **Similarity Scores** |
    |------------------------|
-   | <img src="images/sim_comparison.png" alt="Similarity Scores" width="60%"> |
+   | <p align="center"><img src="images/sim_comparison.png" alt="Similarity Scores" width="60%"></p> |
 
 4. **Result Summary**:
    - Enhanced perplexity leads to better reconstruction performance but does not necessarily improve voice conversion accuracy. This is consistent with findings in vision tasks, where higher perplexity benefits reconstruction but may disrupt speaker-content separation.
 
    | **Performance Summary** |
    |--------------------------|
-   | <img src="images/concolusion.png" alt="Performance Summary" width="85%"> |
+   | <p align="center"><img src="images/concolusion.png" alt="Performance Summary" width="85%"></p> |
 
 ---
 
