@@ -48,7 +48,7 @@ This project investigates the impact of codebook perplexity on one-shot voice co
 
    | **Reconstruction Comparisons** |
    |----------------------------|
-   | <img src="images/reconstruction.png" alt="Reconstructioin Comparisons" width="75%"></p> |
+   | <p align="center"><img src="images/reconstruction.png" alt="Reconstructioin Comparisons" width="75%"></p> |
 
 3. **Test Performance**:
    - Conversion performance shows no improvement and sometimes declines, indicating a trade-off between reconstruction accuracy and conversion effectiveness.
