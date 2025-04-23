@@ -1,9 +1,9 @@
-# Influence of Codebook Perplexity in One-Shot Voice Conversion Based on Vector Quantization Method
+# Influence of Codebook Perplexity in Zero-Shot Voice Conversion Based on Vector Quantization Method
 
 ---
 
 ### **Overview**
-This project investigates the impact of codebook perplexity on one-shot voice conversion using Vector Quantization (VQ). By integrating the CVQ-VAE (Clustered Vector Quantization Variational Autoencoder) update mechanism into the VQVC (Vector Quantization Voice Conversion) model, we explore its effects on:
+This project investigates the impact of codebook perplexity on zero-shot voice conversion using Vector Quantization (VQ). By integrating the CVQ-VAE (Clustered Vector Quantization Variational Autoencoder) update mechanism into the VQVC (Vector Quantization Voice Conversion) model, we explore its effects on:
 - Codebook utility (perplexity),
 - Training performance (reconstruction accuracy),
 - Test performance (voice conversion similarity).
@@ -73,6 +73,6 @@ This project investigates the impact of codebook perplexity on one-shot voice co
   
 ---
 ### **References**
-1. Da-Yi Wu and Hung-Yi Lee, "One-shot voice conversion by vector quantization," IEEE ICASSP, 2020.
+1. Da-Yi Wu and Hung-Yi Lee, "Zero-shot voice conversion by vector quantization," IEEE ICASSP, 2020.
 2. C. Zheng and A. Vedaldi, "Online clustered codebook," IEEE ICCV, 2023.
 3. H. Wu and M. Flierl, "Vector Quantization-Based Regularization for Autoencoders," AAAI, 2020.
